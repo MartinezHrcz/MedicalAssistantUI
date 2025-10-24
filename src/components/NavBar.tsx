@@ -20,7 +20,7 @@ const NavBar:FC<NavBarProps> = ({title,links, showlogout=false}) =>{
     const handleLogout = () =>
     {
         localStorage.clear();
-        navigate("/login");
+        navigate("/");
     }
 
     const toggleMenu = () => setIsOpen(!isOpen);

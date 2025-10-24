@@ -5,11 +5,13 @@ import {StartPage} from "./pages/StartPage.tsx";
 import {LoginDoctor} from "./pages/LoginDoctor.tsx";
 import {LoginPatient} from "./pages/patient/LoginPatient.tsx";
 import PatientDashboard from "./pages/patient/PatientDashboard.tsx";
+import SignupPatient from "./pages/patient/SignupPatient.tsx";
 
 function App() {
   return (
       <Routes>
           <Route path={"/"} element={<StartPage />}></Route>
+          <Route path={"/patient/signup"} element={<SignupPatient/>}></Route>
           <Route path={"/doctor/login"} element={<LoginDoctor/>}></Route>
           <Route path={"/patient/login"} element={<LoginPatient/>}></Route>
           <Route path={"/doctor/dashboard"} element={<DoctorDashboard/>}></Route>

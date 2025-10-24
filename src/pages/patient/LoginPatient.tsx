@@ -47,7 +47,7 @@ export function LoginPatient(){
                     {()=> (
                         <Form className="space-y-6">
                             <div>
-                                <label className="block mb-1 text-left text-lg">Email:</label>
+                                <label className="block mb-1 text-left text-lg">TAJ Number:</label>
                                 <ErrorMessage name="taj" component="div" className="text-red-500 text-left mb-1" />
                                 <Field name="taj" placeholder="Enter your TAJ number" type="text" className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
 
@@ -63,8 +63,11 @@ export function LoginPatient(){
                             </button>
                         </Form>
                     )}
-
                 </Formik>
+                <div className="border-t border-gray-200 mt-4">
+                    <label className="block mb-1 text-left text-lg mb-2 mt-2">Don't have an account?</label>
+                    <button className="w-full bg-blue-600 text-white px-4 rounded hover:bg-blue-700 transition" onClick={()=> navigate("/patient/signup")}>Sign up!</button>
+                </div>
             </div>
         </div>
     );
