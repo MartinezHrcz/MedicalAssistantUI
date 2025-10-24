@@ -13,7 +13,7 @@ const validation = Yup.object().shape({
     password: Yup.string().required("Field is required!").min(8),
 });
 
-export function Login(){
+export function LoginDoctor(){
     const navigate = useNavigate();
 
     const handleLogin = async (values: LoginFormsInput) => {
@@ -31,7 +31,7 @@ export function Login(){
         }
         catch (error) {
             console.log(error);
-            alert("Login failed.");
+            alert("LoginDoctor failed.");
         }
     }
 

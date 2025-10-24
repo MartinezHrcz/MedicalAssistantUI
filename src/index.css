@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,6 +17,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -27,8 +30,15 @@ a:hover {
 
 body {
   margin: 0;
+    padding: 0;
   min-width: 320px;
   min-height: 100vh;
+    width: 100%;
+}
+html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 h1 {
@@ -66,4 +76,11 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+#root {
+    margin: 0;
+    padding:0;
+    width: 100%;
+    height: 100%;
 }

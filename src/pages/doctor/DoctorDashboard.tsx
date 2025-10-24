@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import type {DoctorDTO} from "../../types/DoctorDTO.ts";
+import NavBar from "../../components/NavBar.tsx";
 
 function DoctorDashboard(){
     const [doctor, setDoctor] = useState<DoctorDTO|null> (null);
@@ -13,9 +14,15 @@ function DoctorDashboard(){
     if (!doctor) {
         return <div>Loading...</div>;
     }
+    const navLinks = [
+        {name: "Home", path: "/dashboard"},
+        {name: "About", path: "/patients"},
+        {name: "Contact", path: "/appointments"}
+    ];
 
     return(
         <div>
+            <NavBar title={"NAVBAR"} links={navLinks} showlogout={true} />
             <h1 className="text-2x1">Doctor Dashboard</h1>
             <div className="space-y-2">
                 {Object.entries(doctor).map(([key, value]) => (
