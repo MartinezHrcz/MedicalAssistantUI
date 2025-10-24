@@ -9,8 +9,8 @@ type LoginFormsInput = {
 }
 
 const validation = Yup.object().shape({
-    email: Yup.string().required("Email is required!").email(),
-    password: Yup.string().required("Password is required!").min(8),
+    email: Yup.string().required("Field is required!").email(),
+    password: Yup.string().required("Field is required!").min(8),
 });
 
 export function Login(){
@@ -37,8 +37,8 @@ export function Login(){
 
     return (
         <div className={"min-h-screen flex items-center justify-center"}>
-            <div className="bg-white shadow-md rounded-lg w-full max-w-md">
-                <h2 className={"text-2x1 font bold mb-6 text-center"}>Login</h2>
+            <div className="bg-black-500 shadow-green-lg rounded-lg w-full max-w-md px-8 py-8">
+                <h2 className={"text-3xl font-bold mb-8 text-center"}>Login</h2>
                 <Formik
                 initialValues={{email: "", password: "",}}
                 validationSchema={validation}
@@ -47,14 +47,16 @@ export function Login(){
                     {()=> (
                         <Form className="space-y-6">
                             <div>
-                                <label className="block mb-1">Email:</label>
-                                <Field name="email" type="text" className="w-full px-2" />
-                                <ErrorMessage name="email" component="div" className="text-red-500" />
+                                <label className="block mb-1 text-left text-lg">Email:</label>
+                                <ErrorMessage name="email" component="div" className="text-red-500 text-left mb-1" />
+                                <Field name="email" placeholder="Enter your email" type="text" className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
                             </div>
                             <div>
-                                <label className="block mb-1">Password:</label>
-                                <Field name="password" type="text" className="w-full px-2" />
-                                <ErrorMessage name="password" component="div" className="text-red-500" />
+                                <label className="block mb-1 text-left text-lg">Password:</label>
+                                <ErrorMessage name="password" component="div" className="text-red-500 bg-red text-left mb-1" />
+                                <Field name="password" placeholder="Enter your password" type="text" className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
                             </div>
                             <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
                                 Login
