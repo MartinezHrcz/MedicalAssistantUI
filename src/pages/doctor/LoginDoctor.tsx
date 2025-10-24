@@ -27,7 +27,7 @@ export function LoginDoctor(){
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("doctor", JSON.stringify(response.data.doctor));
 
-            navigate("/dashboard");
+            navigate("/doctor/dashboard");
         }
         catch (error) {
             console.log(error);
@@ -63,8 +63,11 @@ export function LoginDoctor(){
                             </button>
                         </Form>
                     )}
-
                 </Formik>
+                <div className="border-t border-gray-200 mt-4">
+                    <label className="block mb-1 text-left text-lg mb-2 mt-2">Don't have an account?</label>
+                    <button className="w-full bg-blue-600 text-white px-4 rounded hover:bg-blue-700 transition" onClick={()=> navigate("/doctor/signup")}>Sign up!</button>
+                </div>
             </div>
         </div>
     );

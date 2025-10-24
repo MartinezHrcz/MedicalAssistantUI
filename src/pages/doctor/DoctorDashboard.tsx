@@ -18,16 +18,16 @@ function DoctorDashboard(){
         </div>);
     }
     const navLinks = [
-        {name: "Home", path: "/dashboard"},
-        {name: "About", path: "/patients"},
-        {name: "Contact", path: "/appointments"}
+        {name: "Profile", path: "/doctor/dashboard"},
+        {name: "My patients", path: "/doctor/patients"},
+        {name: "Book appointment", path: "/doctor/appointments"}
     ];
 
     return(
         <div>
-            <NavBar title={"NAVBAR"} links={navLinks} showlogout={true} />
+            <NavBar title={`Dr. ${doctor.name}'s panel`} links={navLinks} showlogout={true} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
-                Signed in as: {doctor.name || "Doctor"}
+                My Data:
             </h1>
             <div className="grid grid-cols-1 gap-y-2 gap-4 px-5">
                 {Object.entries(doctor).map(([key, value]) => (
