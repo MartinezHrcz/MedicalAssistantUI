@@ -7,6 +7,7 @@ import {LoginPatient} from "./pages/patient/LoginPatient.tsx";
 import PatientDashboard from "./pages/patient/PatientDashboard.tsx";
 import SignupPatient from "./pages/patient/SignupPatient.tsx";
 import SignupDoctor from "./pages/doctor/SignupDoctor.tsx";
+import Appointments from "./pages/doctor/Appointments.tsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path={"/patient/login"} element={<LoginPatient/>}></Route>
           <Route path={"/doctor/dashboard"} element={<DoctorDashboard/>}></Route>
           <Route path={"/patient/dashboard"} element={<PatientDashboard/>}></Route>
+          <Route path={"/doctor/appointments"} element={<Appointments/>}></Route>
       </Routes>
   );
 }
