@@ -36,8 +36,8 @@ export function LoginDoctor(){
     }
 
     return (
-        <div className={"min-h-screen flex items-center justify-center"}>
-            <div className="bg-black-500 shadow-green-lg rounded-lg w-full max-w-md px-8 py-8">
+        <div className={"min-h-screen flex items-center justify-center "}>
+            <div className="shadow-green-lg rounded-lg w-full max-w-md px-8 py-8 shadow-md shadow-cyan-200">
                 <h2 className={"text-3xl font-bold mb-8 text-center"}>Login</h2>
                 <Formik
                 initialValues={{email: "", password: "",}}

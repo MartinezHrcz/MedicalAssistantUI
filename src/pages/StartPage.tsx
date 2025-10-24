@@ -6,10 +6,10 @@ export function StartPage() {
         <>
             <div className="flex h-auto min-h-[95vh] w-full gap-10">
                 <div className="flex flex-col justify-center items-center basis-1/3 gap-20">
-                    <button className="btn btn-primary w-full h-auto py-5 text-2xl" onClick={()=>navigate("/doctor_login")}>
+                    <button className="btn btn-primary w-full h-auto py-5 text-2xl" onClick={()=>navigate("/doctor/login")}>
                         Doctor
                     </button>
-                    <button className="btn btn-primary w-full py-5 text-2xl" onClick={()=>navigate("/patient_login")}>
+                    <button className="btn btn-primary w-full py-5 text-2xl" onClick={()=>navigate("/patient/login")}>
                         Patient
                     </button>
                 </div>
