@@ -32,7 +32,7 @@ function MyDoctor(){
     const navLinks = patientDashboardLinks;
     if (!doctor) {
         return <div className="text-center min-h-full">
-            <NavBar title={"NAVBAR"} links={navLinks} showlogout={true} />
+            <NavBar title={"My doctor"} links={navLinks}  />
             You don't have a doctor at the moment!
         </div>;
     }
@@ -40,7 +40,7 @@ function MyDoctor(){
 
     return(
         <div>
-            <NavBar title={"NAVBAR"} links={navLinks} showlogout={true} />
+            <NavBar title={"NAVBAR"} links={navLinks} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
                 Medical practitioner: {doctor.name || "Doctor"}
             </h1>

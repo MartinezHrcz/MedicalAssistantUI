@@ -30,7 +30,7 @@ const NavBar:FC<NavBarProps> = ({title,links, showlogout=false}) =>{
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex-shrink-0">
-                        <h1 className="text-xl font-bold">{title}</h1>
+                        <h1 className="text-xl font-bold uppercase">{title}</h1>
                     </div>
                     <div className="hidden md:flex space-x-6 items-center">
                         {links.map((link) =>(

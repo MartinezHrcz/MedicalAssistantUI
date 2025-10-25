@@ -37,7 +37,7 @@ function PatientDashboard() {
 
     return(
         <div>
-            <NavBar title={"NAVBAR"} links={navLinks} showlogout={true} />
+            <NavBar title={"Profile"} links={navLinks} showlogout={true} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
                 Signed in as: {patient.name || "Patient"}
             </h1>

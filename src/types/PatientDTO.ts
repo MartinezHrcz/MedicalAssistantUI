@@ -24,3 +24,9 @@ export interface LoginPatientDTO {
     taj: string;
     password: string;
 }
+
+export interface MedicationDTO{
+    id: string;
+    title: string;
+    name: string;
+}
