@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import type {DoctorDTO} from "../../types/DoctorDTO.ts";
 import NavBar from "../../components/NavBar.tsx";
+import {doctorDashLinks} from "../Dashnavlinks.ts";
 
 function DoctorDashboard(){
     const [doctor, setDoctor] = useState<DoctorDTO|null> (null);
@@ -17,11 +18,7 @@ function DoctorDashboard(){
             <p className="text-white text-lg">Loading...</p>
         </div>);
     }
-    const navLinks = [
-        {name: "Profile", path: "/doctor/dashboard"},
-        {name: "My patients", path: "/doctor/patients"},
-        {name: "Book appointment", path: "/doctor/appointments"}
-    ];
+    const navLinks = doctorDashLinks;
 
     return(
         <div>

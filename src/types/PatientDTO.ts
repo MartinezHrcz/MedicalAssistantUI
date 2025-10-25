@@ -5,6 +5,7 @@ export interface PatientDTO {
     taj:string;
     complaints: string;
     timeOfAdmission: Date;
+    doctorId: number;
 }
 export interface CreatePatientDTO {
     name: string;

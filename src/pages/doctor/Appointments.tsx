@@ -9,13 +9,18 @@ function Appointments() {
     const [patients, setPatients] = useState<PatientDTO[]> ([]);
     const [loading, setLoading] = useState<boolean>(true);
     const url = "http://localhost:5249/api/doctor/my_patients/";
+    const removepatientUrl = "http://localhost:5249/api/doctor/removepatient/";
 
     useEffect(() => {
         const storedDoctor = localStorage.getItem("doctor");
         if (storedDoctor) {
             const parsedDoctor = JSON.parse(storedDoctor);
             setDoctor(parsedDoctor);
-            axios.get<PatientDTO[]>(url.concat(parsedDoctor.id.toString()))
+            axios.get<PatientDTO[]>(url.concat(parsedDoctor.id.toString()), {
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                }
+            })
                 .then((res) => setPatients(res.data))
                 .catch((err) => console.log(err))
                 .finally(() => setLoading(false));
@@ -36,12 +41,23 @@ function Appointments() {
 
     const navLinks = [
         {name: "Profile", path: "/doctor/dashboard"},
-        {name: "My patients", path: "/doctor/patients"},
-        {name: "Book appointment", path: "/doctor/appointments"}
+        {name: "Book patient", path: "/doctor/booking"},
+        {name: "My appointments", path: "/doctor/appointments"}
     ];
 
-    const handleAddPatient = (patient: PatientDTO) => {
-        alert("add patient");
+    const handleRemovePatient = async (patient: PatientDTO) => {
+        try{
+            await axios.put(`${removepatientUrl}${doctor.id}-${patient.id}`, {}, {
+                headers:{
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+            setPatients((prev) => prev.filter((p) => p.id !== patient.id));
+        }
+        catch(err){
+            console.log(err);
+            alert("Something went wrong!");
+        }
     }
 
     return (
@@ -54,17 +70,17 @@ function Appointments() {
                     <table className="min-w-full bg-white rounded shadow-md overflow-hidden">
                         <thead className="bg-blue-600 text-white">
                         <tr>
-                            <th className="py-2 px-4 text-left">Name</th>
-                            <th className="py-2 px-4 text-left">Address</th>
-                            <th className="py-2 px-4 text-left">Taj</th>
-                            <th className="py-2 px-4 text-left">Complaints</th>
-                            <th className="py-2 px-4 text-left">Time of Admission</th>
-                            <th className="py-2 px-4 text-left">Actions</th>
+                            <th className="py-2 px-4 ">Name</th>
+                            <th className="py-2 px-4 ">Address</th>
+                            <th className="py-2 px-4 ">Taj</th>
+                            <th className="py-2 px-4 ">Complaints</th>
+                            <th className="py-2 px-4 ">Time of Admission</th>
+                            <th className="py-2 px-4 ">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         {patients.map((patient) => (
-                            <tr key={patient.id} className="border-b hover:bg-gray-100">
+                            <tr key={patient.id} className="border-b text-black hover:bg-gray-100">
                                 <td className="py-2 px-4">{patient.name}</td>
                                 <td className="py-2 px-4">{patient.address || "-"}</td>
                                 <td className="py-2 px-4">{patient.taj}</td>
@@ -72,10 +88,10 @@ function Appointments() {
                                 <td className="py-2 px-4">{new Date(patient.timeOfAdmission).toLocaleString()}</td>
                                 <td className="py-2 px-4">
                                     <button
-                                        onClick={() => handleAddPatient(patient)}
-                                        className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
+                                        onClick={() => handleRemovePatient(patient)}
+                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition transition-all duration-700"
                                     >
-                                        Add
+                                        Remove
                                     </button>
                                 </td>
                             </tr>
