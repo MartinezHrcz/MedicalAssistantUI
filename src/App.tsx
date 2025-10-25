@@ -9,6 +9,8 @@ import SignupPatient from "./pages/patient/SignupPatient.tsx";
 import SignupDoctor from "./pages/doctor/SignupDoctor.tsx";
 import Appointments from "./pages/doctor/Appointments.tsx";
 import Booking from "./pages/doctor/Booking.tsx";
+import MyDoctor from "./pages/patient/MyDoctor.tsx";
+import Medications from "./pages/patient/Medications.tsx";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path={"/patient/dashboard"} element={<PatientDashboard/>}></Route>
           <Route path={"/doctor/appointments"} element={<Appointments/>}></Route>
           <Route path={"/doctor/booking"} element={<Booking/>}></Route>
+          <Route path={"/patient/my_doctor"} element={<MyDoctor/>}></Route>
+          <Route path={"/patient/medications"} element={<Medications/>}></Route>
       </Routes>
   );
 }

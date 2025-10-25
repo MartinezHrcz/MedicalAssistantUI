@@ -5,6 +5,9 @@ const doctorDashLinks = [
 ];
 
 const patientDashboardLinks = [
+    {name: "Profile", path: "/patient/dashboard"},
+    {name: "My doctor", path: "/patient/my_doctor"},
+    {name: "My medications", path: "/patient/medications"}
 
 ]
 export { doctorDashLinks, patientDashboardLinks };
