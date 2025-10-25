@@ -30,3 +30,9 @@ export interface MedicationDTO{
     title: string;
     name: string;
 }
+
+export interface PatientMedicationDTO {
+    id: number;
+    taj: string;
+    medication: MedicationDTO[];
+}
