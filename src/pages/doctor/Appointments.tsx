@@ -73,7 +73,7 @@ function Appointments() {
     const handleShowMedications = async (patient: PatientDTO) => {
         try {
             const res = await axios.get<PatientMedicationDTO>(
-                `http://localhost:5249/api/doctor/medication/${encodeURIComponent(patient.taj)}`,
+                `http://localhost:5249/medication/${encodeURIComponent(patient.taj)}`,
                 { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
             );
             setMedicationPopup({ patient, medications: res.data.medications });
@@ -96,7 +96,7 @@ function Appointments() {
                 {},
                 { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
             );
-            setMedicationPopup(null);
+            setAddMedicationPopup(null);
             alert("Medication added successfully!");
         } catch (err) {
             console.log(err);
@@ -154,13 +154,19 @@ function Appointments() {
                                         onClick={() => handleRemovePatient(patient)}
                                         className="bg-red-500 text-white py-1 rounded hover:bg-red-700 transition duration-700"
                                     >
-                                        Remove
+                                        Remove Patient
                                     </button>
+
                                     <button
                                         onClick={() => handleOpenMedication(patient)}
                                         className="bg-green-500 text-white py-1 rounded hover:bg-green-700 transition"
                                     >
                                         Add Medication
+                                    </button>
+
+                                    <button onClick={() => handleShowMedications(patient)}
+                                            className="bg-blue-600 text-white py-1 rounded hover:bg-blue-800 transition">
+                                        Show meds
                                     </button>
                                 </td>
                             </tr>
@@ -169,6 +175,7 @@ function Appointments() {
                     </table>
                 )}
             </div>
+
 
             {medicationPopup && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -219,24 +226,24 @@ function Appointments() {
             {addMedicationPopup && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                     <div className="bg-blue-500 p-6 rounded shadow-lg w-96">
-                        <h2 className="text-xl font-semibold mb-4">Add Medication for {medicationPopup.patient?.name}</h2>
+                        <h2 className="text-xl font-semibold mb-4">Add Medication for {addMedicationPopup.patient?.name}</h2>
                         <input
                             type="text"
                             placeholder="Title"
                             value={addMedicationPopup.title}
-                            onChange={e => setMedicationPopup({ ...medicationPopup, title: e.target.value })}
+                            onChange={e => setAddMedicationPopup({ ...addMedicationPopup, title: e.target.value })}
                             className="w-full mb-3 p-2 border rounded"
                         />
                         <input
                             type="text"
                             placeholder="Name"
                             value={addMedicationPopup.name}
-                            onChange={e => setMedicationPopup({ ...medicationPopup, name: e.target.value })}
+                            onChange={e => setAddMedicationPopup({ ...addMedicationPopup, name: e.target.value })}
                             className="w-full mb-3 p-2 border rounded"
                         />
                         <div className="flex justify-end gap-2">
                             <button
-                                onClick={() => setMedicationPopup(null)}
+                                onClick={() => setAddMedicationPopup(null)}
                                 className="px-3 py-1 rounded bg-red-600 hover:bg-gray-400"
                             >
                                 Cancel
