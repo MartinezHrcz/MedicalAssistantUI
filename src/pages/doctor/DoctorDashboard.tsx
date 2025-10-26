@@ -3,10 +3,14 @@ import type {DoctorDTO} from "../../types/DoctorDTO.ts";
 import NavBar from "../../components/NavBar.tsx";
 import {doctorDashLinks} from "../Dashnavlinks.ts";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function DoctorDashboard(){
     const [doctor, setDoctor] = useState<DoctorDTO|null> (null);
     const [updatePopup, setUpdatePopup] = useState<DoctorDTO |null> (null);
+    const [deletePopup, setDeletePopup] = useState(false);
+    const deleteurl = `http://localhost:5249/api/doctor/delete/`;
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedDoctor = localStorage.getItem("doctor");
@@ -55,6 +59,24 @@ function DoctorDashboard(){
         setUpdatePopup(null);
     };
 
+    const handleDelete = async () => {
+        try{
+            await axios.delete(deleteurl.concat(doctor?.id), {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                }
+            })
+            setDoctor(null);
+            setUpdatePopup(null);
+            alert("Profile deleted successfully.");
+            navigate('/');
+        }
+        catch(err){
+            console.log(err);
+            alert("Failed to delete profile");
+        }
+    }
+
 
     if (!doctor) {
         return (
@@ -87,6 +109,7 @@ function DoctorDashboard(){
                     Edit Profile
                 </button>
                 <button
+                    onClick={() => setDeletePopup(true)}
                     className="mt-4 px-4 py-2 bg-red-600 w-full text-white rounded">
                     Delete Profile
                 </button>
@@ -116,7 +139,7 @@ function DoctorDashboard(){
                             type="text"
                             placeholder="Phone Number"
                             value={updatePopup.phone || ""}
-                            onChange={(e) => handleChange("phoneNumber", e.target.value)}
+                            onChange={(e) => handleChange("phone", e.target.value)}
                             className="w-full p-2 rounded"
                         />
                         <input
@@ -144,6 +167,28 @@ function DoctorDashboard(){
                     </div>
                 </div>
             )
+            }
+
+            {
+                deletePopup && (
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                        <div className="bg-blue-500 p-6 rounded shadow-lg w-96 space-y-4">
+                            <h2 className="text-xl font-semibold mb-4">Delete profile?</h2>
+                            <div className="flex justify-center items-center flex-row gap-5">
+                                <button
+                                    onClick={() => handleDelete()}
+                                    className="px-4 py-2 bg-red-600 w-full text-white rounded">
+                                    Yes
+                                </button>
+                                <button
+                                    onClick={() => setDeletePopup(false)}
+                                    className="px-4 py-2 bg-green-600 w-full text-white rounded">
+                                    No
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
             }
         </div>
     );
