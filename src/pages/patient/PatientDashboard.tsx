@@ -132,7 +132,7 @@ function PatientDashboard() {
     const navLinks = patientDashboardLinks;
 
     return(
-        <div>
+        <div className="min-h-screen w-screen">
             <NavBar title={"Profile"} links={navLinks} showlogout={true} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
                 Signed in as: {patient.name || "Patient"}

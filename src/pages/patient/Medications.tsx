@@ -34,7 +34,7 @@ function Medications(){
     }, [patient])
 
     return(
-        <div>
+        <div className="min-h-screen w-screen">
             <NavBar title={"My Medications"} links={navLinks}></NavBar>
             <h1 className="text-2xl font-semibold mb-4 text-center text-white">
                 My Medications

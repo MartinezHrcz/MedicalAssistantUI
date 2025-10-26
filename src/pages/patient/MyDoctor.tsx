@@ -39,8 +39,8 @@ function MyDoctor(){
 
 
     return(
-        <div>
-            <NavBar title={"NAVBAR"} links={navLinks} />
+        <div className="min-h-screen w-screen">
+            <NavBar title={"My Doctor"} links={navLinks} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
                 Medical practitioner: {doctor.name || "Doctor"}
             </h1>

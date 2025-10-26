@@ -26,7 +26,7 @@ const NavBar:FC<NavBarProps> = ({title,links, showlogout=false}) =>{
     const toggleMenu = () => setIsOpen(!isOpen);
 
     return (
-        <nav className="w-full bg-blue-900 text-white shadow-md mb-10 border-b-4 ">
+        <nav className="w-full bg-blue-900 text-white shadow-md mb-10 border-b-4 w-screen">
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex-shrink-0">

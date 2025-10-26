@@ -124,7 +124,7 @@ function Appointments() {
 
 
     return (
-        <div>
+        <div className="min-h-screen w-screen">
             <NavBar title={`My appointments`} links={navLinks} />
             <div className="mt-6">
                 {patients.length === 0 ? (

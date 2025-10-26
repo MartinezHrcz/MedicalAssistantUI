@@ -116,7 +116,7 @@ function DoctorDashboard(){
     const navLinks = doctorDashLinks;
 
     return(
-        <div>
+        <div className="min-h-screen w-screen">
             <NavBar title={`Dr. ${doctor.name}'s panel`} links={navLinks} showlogout={true} />
             <h1 className="text-2xl font-semibold mb-6 text-center">
                 My Data:
