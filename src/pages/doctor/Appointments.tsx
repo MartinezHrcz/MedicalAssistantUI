@@ -126,13 +126,13 @@ function Appointments() {
     return (
         <div className="min-h-screen w-screen">
             <NavBar title={`My appointments`} links={navLinks} />
-            <div className="mt-6">
+            <div className="mt-6 overflow-x-auto px-10">
                 {patients.length === 0 ? (
-                    <p className="text-white">No patients found.</p>
+                    <p className="text-white text-center py-10">No patients found.</p>
                 ) : (
-                    <table className="min-w-full bg-white rounded shadow-md overflow-hidden">
-                        <thead className="bg-blue-600 text-white">
-                        <tr>
+                    <table className="min-w-full bg-white rounded-b-2xl overflow-hidden">
+                        <thead className="bg-blue-600 text-white text-xl">
+                        <tr className="text-left uppercase text-sm font-medium">
                             <th className="py-2 px-4 ">Name</th>
                             <th className="py-2 px-4 ">Address</th>
                             <th className="py-2 px-4 ">Taj</th>
@@ -141,10 +141,10 @@ function Appointments() {
                             <th className="py-2 px-4 ">Actions</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="divide-y text-left divide-gray-500">
                         {patients.map((patient) => (
-                            <tr key={patient.id} className="border-b text-black hover:bg-gray-100">
-                                <td className="py-2 px-4">{patient.name}</td>
+                            <tr key={patient.id} className="hover:bg-blue-100 transition text-gray-700">
+                                <td className="py-2 px-4 text-gray-800 font-medium">{patient.name}</td>
                                 <td className="py-2 px-4">{patient.address || "-"}</td>
                                 <td className="py-2 px-4">{patient.taj}</td>
                                 <td className="py-2 px-4">{patient.complaints || "-"}</td>
@@ -152,7 +152,7 @@ function Appointments() {
                                 <td className="py-2 px-4 flex gap-2">
                                     <button
                                         onClick={() => handleRemovePatient(patient)}
-                                        className="bg-red-500 text-white py-1 rounded hover:bg-red-700 transition duration-700"
+                                        className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-lg transition"
                                     >
                                         Remove Patient
                                     </button>
@@ -178,42 +178,44 @@ function Appointments() {
 
 
             {medicationPopup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-blue-500 p-6 rounded shadow-lg w-96 max-h-[80vh] overflow-auto">
-                        <h2 className="text-xl font-semibold mb-4">Medications for {medicationPopup.patient?.name}</h2>
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+                    <div className="bg-blue-600 rounded-2xl shadow-2xl w-[420px] p-6 sm:p-8 space-y-5 border max-h-[80vh] border-blue-200">
+                        <h2 className="text-2xl font-semibold mb-4">Medications for {medicationPopup.patient?.name}</h2>
                         {medicationPopup.medications.length === 0 ? (
                             <p className="text-white">No medications found.</p>
                         ) : (
-                            <table className="min-w-full bg-white rounded shadow-md overflow-hidden">
-                                <thead className="bg-gray-700 text-white">
-                                <tr>
-                                    <th className="py-2 px-4">Title</th>
-                                    <th className="py-2 px-4">Name</th>
-                                    <th className="py-2 px-4">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {medicationPopup.medications.map((med) => (
-                                    <tr key={med.id} className="border-b text-black hover:bg-gray-100">
-                                        <td className="py-2 px-4">{med.title}</td>
-                                        <td className="py-2 px-4">{med.name}</td>
-                                        <td className="py-2 px-4">
-                                            <button
-                                                onClick={() => handleRemoveMedication(med.id)}
-                                                className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
-                                            >
-                                                Remove
-                                            </button>
-                                        </td>
+                            <div className="overflow-y-auto" style={{ maxHeight: "calc(3 * 4rem)" }}>
+                                <table className="min-w-full bg-white rounded shadow-md overflow-hidden">
+                                    <thead className="bg-gray-700 text-white sticky top-0">
+                                    <tr>
+                                        <th className="py-2 px-4">Title</th>
+                                        <th className="py-2 px-4">Name</th>
+                                        <th className="py-2 px-4">Actions</th>
                                     </tr>
-                                ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    {medicationPopup.medications.map((med) => (
+                                        <tr key={med.id} className="border-b text-black hover:bg-gray-100">
+                                            <td className="py-2 px-4 font-medium text-gray-800">{med.title}</td>
+                                            <td className="py-2 px-4 text-gray-700">{med.name}</td>
+                                            <td className="py-2 px-4 flex justify-center">
+                                                <button
+                                                    onClick={() => handleRemoveMedication(med.id)}
+                                                    className="flex-1 px-4 py-3 bg-red-600 hover:bg-red-700 text-white text-lg rounded-lg transition">
+                                                    Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
                         )}
                         <div className="flex justify-end mt-4">
                             <button
                                 onClick={() => setMedicationPopup(null)}
-                                className="px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-500"
+                                className="flex-1 px-4 py-3 bg-gray-700 hover:bg-gray-800 text-white text-lg rounded-lg transition"
                             >
                                 Close
                             </button>
@@ -224,33 +226,33 @@ function Appointments() {
 
 
             {addMedicationPopup && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                    <div className="bg-blue-500 p-6 rounded shadow-lg w-96">
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50">
+                    <div className="bg-blue-600 rounded-2xl shadow-2xl w-[420px] p-6 sm:p-8 space-y-5 border border-blue-200">
                         <h2 className="text-xl font-semibold mb-4">Add Medication for {addMedicationPopup.patient?.name}</h2>
                         <input
                             type="text"
                             placeholder="Title"
                             value={addMedicationPopup.title}
                             onChange={e => setAddMedicationPopup({ ...addMedicationPopup, title: e.target.value })}
-                            className="w-full mb-3 p-2 border rounded"
+                            className="w-full bg-white p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
                         />
                         <input
                             type="text"
                             placeholder="Name"
                             value={addMedicationPopup.name}
                             onChange={e => setAddMedicationPopup({ ...addMedicationPopup, name: e.target.value })}
-                            className="w-full mb-3 p-2 border rounded"
+                            className="w-full bg-white p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
                         />
                         <div className="flex justify-end gap-2">
                             <button
                                 onClick={() => setAddMedicationPopup(null)}
-                                className="px-3 py-1 rounded bg-red-600 hover:bg-gray-400"
+                                className="flex-1 px-4 py-3 bg-gray-700 hover:bg-gray-800 text-white text-lg rounded-lg transition"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleAddMedication}
-                                className="px-3 py-1 rounded bg-green-600 text-white hover:bg-blue-700"
+                                className="flex-1 px-4 py-3 bg-green-600 hover:bg-green-700 text-white text-lg rounded-lg transition"
                             >
                                 Add
                             </button>
