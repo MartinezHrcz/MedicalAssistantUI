@@ -3,7 +3,6 @@ import NavBar from "../../components/NavBar.tsx";
 import type {PatientDTO} from "../../types/PatientDTO.ts";
 import {patientDashboardLinks} from "../Dashnavlinks.ts";
 import axios from "axios";
-import type {DoctorDTO} from "../../types/DoctorDTO.ts";
 import {useNavigate} from "react-router-dom";
 
 

@@ -41,14 +41,14 @@ function MyDoctor(){
     return(
         <div className="min-h-screen w-screen">
             <NavBar title={"My Doctor"} links={navLinks} />
-            <h1 className="text-2xl font-semibold mb-6 text-center">
+            <h1 className="text-3xl font-bold mb-8 text-center">
                 Medical practitioner: {doctor.name || "Doctor"}
             </h1>
-            <div className="grid grid-cols-1 gap-y-2 gap-4 px-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 gap-6 px-5">
                 {Object.entries(doctor).map(([key, value]) => (
-                    <div key={key} className="border rounded-lg p-3 shadow-sm">
-                        <p className="w-full text-2xl capitalize border-b">{key}</p>
-                        <p className="w-full text-xl break-words">{value}</p>
+                    <div key={key} className="bg-white text-black rounded-xl shadow p-4 transition-transform transform hover:scale-[1.02]">
+                        <p className="text-gray-600 text-sm font-semibold uppercase tracking-wide border-b border-gray-300 pb-1 mb-2">{key}</p>
+                        <p className="text-gray-900 text-lg font-medium break-words">{value || 'Not given'}</p>
                     </div>
                 ))}
             </div>
