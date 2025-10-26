@@ -7,24 +7,6 @@ export interface PatientDTO {
     timeOfAdmission: Date;
     doctorId: number;
 }
-export interface CreatePatientDTO {
-    name: string;
-    address: string;
-    taj: string;
-    complaints: string;
-    password: string;
-}
-export interface UpdatePatientDTO {
-    name: string;
-    address: string;
-    taj: string;
-    complaints: string;
-}
-export interface LoginPatientDTO {
-    taj: string;
-    password: string;
-}
-
 export interface MedicationDTO{
     id: string;
     title: string;
