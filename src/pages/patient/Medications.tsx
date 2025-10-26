@@ -35,34 +35,36 @@ function Medications(){
 
     return(
         <div className="min-h-screen w-screen">
-            <NavBar title={"My Medications"} links={navLinks}></NavBar>
+            <NavBar title={"Prescriptions"} links={navLinks}></NavBar>
             <h1 className="text-2xl font-semibold mb-4 text-center text-white">
                 My Medications
             </h1>
-
-            {medications.length === 0 ? (
-                <p className="text-white text-center">No medications found.</p>
-            ) : (
-                <table className="min-w-full bg-white rounded shadow-md overflow-hidden">
-                    <thead className="bg-blue-600 text-white">
-                    <tr>
-                        <th className="py-2 px-4">Title</th>
-                        <th className="py-2 px-4">Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {medications.map((med) => (
-                        <tr
-                            key={med.id}
-                            className="border-b text-black hover:bg-gray-100"
-                        >
-                            <td className="py-2 px-4">{med.title}</td>
-                            <td className="py-2 px-4">{med.name}</td>
+            <div className="mt-6 overflow-x-auto px-10">
+                {medications.length === 0 ? (
+                    <p className="text-white text-center">No prescriptions found.</p>
+                ) : (
+                    <table className="min-w-full bg-white rounded-b-2xl overflow-hidden">
+                        <thead className="bg-blue-600 text-white">
+                        <tr className=" uppercase text-sm font-medium">
+                            <th className="py-2 px-4">Used for</th>
+                            <th className="py-2 px-4">Name of medication</th>
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
-            )}
+                        </thead>
+                        <tbody className="divide-y divide-gray-500">
+                        {medications.map((med) => (
+                            <tr
+                                key={med.id}
+                                className="hover:bg-blue-100 transition text-gray-700"
+                            >
+                                <td className="py-2 px-4 text-gray-800 font-medium">{med.title}</td>
+                                <td className="py-2 px-4">{med.name}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                )}
+            </div>
+
         </div>
     );
 }
