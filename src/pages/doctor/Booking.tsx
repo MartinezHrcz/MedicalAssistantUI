@@ -22,7 +22,7 @@ function Booking() {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             })
-                .then((res) => setPatients(res.data.filter(patient => patient.doctorId !== parsedDoctor.id)))
+                .then((res) => setPatients(res.data.filter(patient => patient.doctorId === null)))
                 .catch((err) => console.log(err))
                 .finally(() => setLoading(false));
         }
@@ -59,14 +59,14 @@ function Booking() {
 
     return (
         <div className="min-h-screen w-screen">
-            <NavBar title={`My appointments`} links={navLinks} />
-            <div className="mt-6">
+            <NavBar title={`Waiting room`} links={navLinks} />
+            <div className="mt-6 overflow-x-auto px-10">
                 {patients.length === 0 ? (
-                    <p className="text-white">No patients found.</p>
+                    <p className="text-white text-center py-10">No patients are waiting.</p>
                 ) : (
-                    <table className="min-w-full bg-white rounded-lg shadow-md shadow-cyan-600 overflow-hidden">
-                        <thead className="bg-blue-600 text-white uppercase">
-                        <tr>
+                    <table className="min-w-full bg-white rounded-b-2xl overflow-hidden">
+                        <thead className="bg-blue-600 text-white text-xl">
+                        <tr className="text-left uppercase text-sm font-medium">
                             <th className="py-2 px-4 ">Name</th>
                             <th className="py-2 px-4 ">Address</th>
                             <th className="py-2 px-4 ">Taj</th>
@@ -77,7 +77,7 @@ function Booking() {
                         </thead>
                         <tbody className="text-black">
                         {patients.map((patient) => (
-                            <tr key={patient.id} className="border-b hover:bg-gray-100">
+                            <tr key={patient.id} className="hover:bg-blue-100 transition text-gray-700">
                                 <td className="py-2 px-4">{patient.name}</td>
                                 <td className="py-2 px-4">{patient.address || "-"}</td>
                                 <td className="py-2 px-4">{patient.taj}</td>
@@ -86,7 +86,7 @@ function Booking() {
                                 <td className="py-2 px-4">
                                     <button
                                         onClick={() => handleAddPatient(patient)}
-                                        className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
+                                        className="bg-green-500 text-white py-1 rounded hover:bg-green-700 transition"
                                     >
                                         Add
                                     </button>

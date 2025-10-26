@@ -128,7 +128,7 @@ function Appointments() {
             <NavBar title={`My appointments`} links={navLinks} />
             <div className="mt-6 overflow-x-auto px-10">
                 {patients.length === 0 ? (
-                    <p className="text-white text-center py-10">No patients found.</p>
+                    <p className="text-white text-center py-10">No appointments made for today.</p>
                 ) : (
                     <table className="min-w-full bg-white rounded-b-2xl overflow-hidden">
                         <thead className="bg-blue-600 text-white text-xl">
