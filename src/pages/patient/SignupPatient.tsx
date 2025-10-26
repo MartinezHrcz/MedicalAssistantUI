@@ -50,7 +50,7 @@ export function SignupPatient(){
         }
     }
     return (
-        <div className={"min-h-screen flex items-center justify-center"}>
+        <div className={"min-h-screen flex items-center justify-center  w-screen"}>
             <div className="relative shadow-green-lg rounded-lg w-full max-w-md px-8 py-8 shadow-md shadow-cyan-200">
                 <button className="absolute right-5 border border-red-600 text-center "
                         onClick={()=> navigate("/patient/login")}>X</button>
@@ -93,7 +93,7 @@ export function SignupPatient(){
                             </div>
 
                             <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition">
-                                Login
+                                Sign up!
                             </button>
                         </Form>
                     )}

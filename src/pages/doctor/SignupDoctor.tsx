@@ -51,7 +51,7 @@ export function SignupDoctor(){
         }
     }
     return (
-        <div className={"min-h-screen flex items-center justify-center"}>
+        <div className={"min-h-screen flex items-center justify-center  w-screen"}>
             <div className=" relative shadow-green-lg rounded-lg w-full max-w-md px-8 py-8 shadow-md shadow-cyan-200">
                 <button className=" border border-red-600 text-center absolute right-5"
                         onClick={()=> navigate("/doctor/login")}>X</button>

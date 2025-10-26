@@ -31,7 +31,7 @@ function MyDoctor(){
 
     const navLinks = patientDashboardLinks;
     if (!doctor) {
-        return <div className="text-center min-h-full">
+        return <div className="text-center min-h-full w-screen">
             <NavBar title={"My doctor"} links={navLinks}  />
             You don't have a doctor at the moment!
         </div>;
