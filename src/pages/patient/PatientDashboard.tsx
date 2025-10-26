@@ -13,7 +13,7 @@ function PatientDashboard() {
     const [deletePopup, setDeletePopup] = useState(false);
     const [passwordPopup, setPasswordPopup] = useState(false);
     const [passwords, setPasswords] = useState({oldPassword: "", newPassword: ""});
-    const deleteurl = `http://localhost:5249/api/patient/delete/`;
+    const deleteurl = `http://localhost:5249/api/patient/`;
     const navigate = useNavigate();
 
 

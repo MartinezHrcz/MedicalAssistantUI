@@ -9,6 +9,8 @@ function DoctorDashboard(){
     const [doctor, setDoctor] = useState<DoctorDTO|null> (null);
     const [updatePopup, setUpdatePopup] = useState<DoctorDTO |null> (null);
     const [deletePopup, setDeletePopup] = useState(false);
+    const [passwordPopup, setPasswordPopup] = useState(false);
+    const [passwords, setPasswords] = useState({oldPassword: "", newPassword: ""});
     const deleteurl = `http://localhost:5249/api/doctor/delete/`;
     const navigate = useNavigate();
 
@@ -77,6 +79,33 @@ function DoctorDashboard(){
         }
     }
 
+    const handleUpdatePassword = async () => {
+        if (!passwords.oldPassword || !passwords.newPassword) {
+            alert("Please fill in both fields.");
+            return;
+        }
+
+        try {
+            await axios.put(
+                `http://localhost:5249/api/doctor/pwd_update/${doctor?.id}`,
+                passwords,
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+                }
+            );
+
+            alert("Password updated successfully!");
+            setPasswords({ oldPassword: "", newPassword: "" });
+            setPasswordPopup(false);
+        } catch (err) {
+            console.error(err.response || err);
+            if (err.response?.status !== 400) {
+                alert("Failed to update password.");
+            } else {
+                alert("Old password is incorrect.");
+            }
+        }
+    };
 
     if (!doctor) {
         return (
@@ -163,6 +192,13 @@ function DoctorDashboard(){
                             >
                                 Save
                             </button>
+                            <button
+                                type="button"
+                                onClick={() => setPasswordPopup(true)}
+                                className="px-4 py-2 bg-yellow-500 w-full text-white rounded"
+                            >
+                                Update Password
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -190,6 +226,42 @@ function DoctorDashboard(){
                     </div>
                 )
             }
+            {passwordPopup && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                    <div className="bg-blue-500 p-6 rounded shadow-lg w-96 space-y-4">
+                        <h2 className="text-xl font-semibold mb-4">Update Password</h2>
+                        <input
+                            type="password"
+                            placeholder="Old Password"
+                            value={passwords.oldPassword}
+                            onChange={(e) => setPasswords({...passwords, oldPassword: e.target.value})}
+                            className="w-full p-2 rounded"
+                        />
+                        <input
+                            type="password"
+                            placeholder="New Password"
+                            value={passwords.newPassword}
+                            onChange={(e) => setPasswords({...passwords, newPassword: e.target.value})}
+                            className="w-full p-2 rounded"
+                        />
+
+                        <div className="flex justify-end gap-2 mt-2">
+                            <button
+                                onClick={() => setPasswordPopup(false)}
+                                className="px-4 py-2 bg-gray-700 text-white rounded"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleUpdatePassword}
+                                className="px-4 py-2 bg-green-600 text-white rounded"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

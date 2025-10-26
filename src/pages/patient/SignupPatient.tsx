@@ -51,8 +51,10 @@ export function SignupPatient(){
     }
     return (
         <div className={"min-h-screen flex items-center justify-center"}>
-            <div className="shadow-green-lg rounded-lg w-full max-w-md px-8 py-8 shadow-md shadow-cyan-200">
-                <h2 className={"text-3xl font-bold mb-8 text-center"}>Login</h2>
+            <div className="relative shadow-green-lg rounded-lg w-full max-w-md px-8 py-8 shadow-md shadow-cyan-200">
+                <button className="absolute right-5 border border-red-600 text-center "
+                        onClick={()=> navigate("/patient/login")}>X</button>
+                <h2 className={"text-3xl font-bold mb-8 text-center"}>Sign up</h2>
                 <Formik
                     initialValues={{name: "",taj: "", address:"", complaints:"", password: ""}}
                     validationSchema={validation}
