@@ -76,6 +76,7 @@ function Appointments() {
                 `http://localhost:5249/medication/${encodeURIComponent(patient.taj)}`,
                 { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
             );
+            // @ts-ignore
             setMedicationPopup({ patient, medications: res.data.medications });
         } catch (err) {
             console.log(err);

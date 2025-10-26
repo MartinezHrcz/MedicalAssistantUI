@@ -11,7 +11,7 @@ function MyDoctor(){
     const [doctor, setDoctor] = useState<DoctorDTO|null> (null);
     const doctorUrl = "http://localhost:5249/api/doctor/";
     useEffect(() => {
-        const storedpatient = JSON.parse(localStorage.getItem("patient"));
+        const storedpatient = JSON.parse(localStorage.getItem("patient") as string);
         if (storedpatient) {
             setPatient(storedpatient);
         }

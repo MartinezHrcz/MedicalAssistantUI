@@ -80,8 +80,11 @@ function PatientDashboard() {
     };
 
     const handleDelete = async () => {
+        if (!patient?.id){
+            return;
+        }
         try{
-            await axios.delete(deleteurl.concat(patient?.id), {
+            await axios.delete(deleteurl.concat(patient?.id.toString()), {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 }

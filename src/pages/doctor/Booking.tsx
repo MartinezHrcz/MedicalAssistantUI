@@ -44,6 +44,7 @@ function Booking() {
 
     const handleAddPatient = (patient: PatientDTO) => {
         try{
+            if (!doctor?.id){ return;}
             axios.put(`${addpatientUrl}${doctor.id}-${patient.id}`, {}, {
                 headers:{
                     Authorization: `Bearer ${localStorage.getItem("token")}`

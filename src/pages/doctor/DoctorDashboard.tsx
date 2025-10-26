@@ -98,7 +98,7 @@ function DoctorDashboard(){
             setPasswords({ oldPassword: "", newPassword: "" });
             setPasswordPopup(false);
         } catch (err) {
-            console.error(err.response || err);
+            console.error(err || err.response);
             if (err.response?.status !== 400) {
                 alert("Failed to update password.");
             } else {

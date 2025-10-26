@@ -8,7 +8,6 @@ import {patientDashboardLinks} from "../Dashnavlinks.ts";
 function Medications(){
     const [patient, setPatient] = useState<PatientDTO|null> (null);
     const [medications, setMedication] = useState<MedicationDTO[]> ([]);
-    const [loading, setLoading] = useState<boolean>(true);
 
     const medicationUrl = "http://localhost:5249/medication/";
     const navLinks = patientDashboardLinks;
@@ -30,7 +29,6 @@ function Medications(){
             )
             .then(res => setMedication(res.data.medications))
             .catch(err => console.log(err))
-            .finally(() => setLoading(false));
     }, [patient])
 
     return(
